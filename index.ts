@@ -38,13 +38,13 @@ addBookToLibrary("The Lord of the Rings", "J.R.R. Tolkien", 1206);
 addBookToLibrary("The Little Prince", "Antoine de Saint-Exupery", 96);
 addBookToLibrary("Harry Potter and the Sorcerer's Stone", "J.K. Rowling", 314);
 
-const tableBody = document.querySelector("tbody");
+const dialog = document.querySelector<HTMLDialogElement>("#book-dialog")!;
+const showDialogBtn =
+  document.querySelector<HTMLButtonElement>("#show-dialog-btn")!;
+const submitBtn = document.querySelector<HTMLButtonElement>("#submit-btn")!;
+const tableBody = document.querySelector<HTMLTableSectionElement>("tbody")!;
 
 function renderLibrary(): void {
-  if (!tableBody) {
-    return;
-  }
-
   tableBody.innerHTML = "";
 
   myLibrary.forEach((book: Book) => {
@@ -57,5 +57,7 @@ function renderLibrary(): void {
     tableBody.append(tableRow);
   });
 }
+
+showDialogBtn.addEventListener("click", () => dialog.showModal());
 
 renderLibrary();
